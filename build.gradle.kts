@@ -2,7 +2,6 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     java
-    id("io.fluxzero.tools.gradle.plugin") version "1.3.29"
     id("org.springframework.boot") version "3.5.16"
 }
 
@@ -20,12 +19,6 @@ java {
 
 repositories {
     mavenCentral()
-}
-
-fluxzero {
-    projectFiles {
-        overrideSdkVersion.set(fluxzeroVersion)
-    }
 }
 
 dependencies {

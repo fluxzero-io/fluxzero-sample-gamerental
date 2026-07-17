@@ -166,18 +166,6 @@
 
 		<plugins>
 			<plugin>
-				<groupId>io.fluxzero.tools</groupId>
-				<artifactId>fluxzero-maven-plugin</artifactId>
-				<version>1.3.29</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>sync-project-files</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>

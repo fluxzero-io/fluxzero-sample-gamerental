@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        build: [maven, gradle]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: ${{ matrix.build }}
+      - uses: gradle/actions/wrapper-validation@v5
+        if: matrix.build == 'gradle'
+      - name: Test with Maven
+        if: matrix.build == 'maven'
+        run: ./mvnw -B -ntp test
+      - name: Test with Gradle
+        if: matrix.build == 'gradle'
+        run: ./gradlew --no-daemon test
+      - name: Reject generated local manuals
+        run: |
+          if [ -e CLAUDE.md ]; then
+            echo "CLAUDE.md is reserved for a future Claude-compatible Fluxzero integration" >&2
+            exit 1
+          fi
+          if find . -path '*/.fluxzero/agents*' -print -quit | grep -q .; then
+            echo "The build generated repository-local Fluxzero manuals" >&2
+            exit 1
+          fi

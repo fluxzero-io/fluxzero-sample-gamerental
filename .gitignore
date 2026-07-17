@@ -64,6 +64,9 @@ node_modules/
 # Optional REPL history
 .node_repl_history
 
+# Current SDK guidance is supplied by the Fluxzero plugin, never copied into this repository.
+.fluxzero/agents/
+
 # Output of 'npm pack'
 *.tgz
 

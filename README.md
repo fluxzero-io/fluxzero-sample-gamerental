@@ -1,48 +1,57 @@
-# Fluxzero Game Rental Example
+# Fluxzero Game Rental Sample
 
-This is an example project for Fluxzero applications, demonstrating a game rental system. It is built on top of the [Fluxzero Base Project](../flux-basic-java).
+A standalone Java sample application demonstrating a game-rental domain with the Fluxzero SDK.
 
-## For AI Agents
+## What it demonstrates
 
-Please refer to `AGENTS.md` for further instructions besides this readme.
+- Command handling and event-sourced aggregates for registering, renting, and returning games.
+- Document queries for catalog search and statistics.
+- User management, roles, validation, and request authentication.
+- HTTP endpoints and WebSocket updates.
+- Side-effect handlers with retry and correction behavior.
+- Fluxzero behavior tests and Spring integration tests.
 
-## What's Included
+## Quick start
 
-In addition to the foundational features (User Management, Authentication, and Fluxzero Integration), this example project includes:
-- **Game Inventory**: Management of games available for rent.
-- **Rental System**: Logic for renting and returning games.
-- **Search & Stats**: Search functionality for games and rental statistics.
-
-## Quick Start
-
-Start the complete application stack:
+Java 25 or newer is required. Run the tests with either wrapper:
 
 ```bash
-./gradlew runTestApp
+./mvnw test
 # or
-./mvnw exec:java
+./gradlew test
 ```
 
-This starts:
-- **Fluxzero Test Server**
-- **Fluxzero Proxy** on port 8080 (main entry point)
-- **Spring Boot Application**
+Start the complete local application stack:
 
-## API Endpoints
+```bash
+./mvnw exec:java
+# or
+./gradlew runTestApp
+```
 
-### User Management
-- **GET** `/api/users` - List all users
-- **POST** `/api/users` - Create new user
-- **GET** `/api/users/{id}` - Get user details
+This starts the Fluxzero test server, the Fluxzero proxy on `http://localhost:8080`, and the Spring Boot application.
 
-### Game Rental
-- **GET** `/api/games` - Find games (optional `term` query param)
-- **POST** `/api/games` - Register a new game
-- **GET** `/api/games/{id}` - Get game details
-- **POST** `/api/games/{id}/rent` - Rent a game
-- **POST** `/api/games/{id}/return` - Return a game
-- **GET** `/api/games/stats` - Get game statistics
+## API endpoints
 
-## Testing
+### User management
 
-Run the `All tests` run configuration in your IDE.
+- **GET** `/api/users` - List all users.
+- **POST** `/api/users` - Create a manager user.
+
+### Game rental
+
+- **GET** `/api/games` - Find games, optionally filtered by `term`.
+- **POST** `/api/games` - Register a game.
+- **GET** `/api/games/{id}` - Get game details.
+- **POST** `/api/games/{id}/rent` - Rent a game.
+- **POST** `/api/games/{id}/return` - Return a game.
+- **GET** `/api/games/stats` - Get game statistics.
+
+## Deployment
+
+The manual `Deploy to Fluxzero Cloud` GitHub Actions workflow builds the Maven application and deploys its container.
+Configure the repository's `FLUXZERO_API_KEY` secret before running it.
+
+## License
+
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE).
