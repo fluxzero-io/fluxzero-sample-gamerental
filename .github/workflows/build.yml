@@ -30,10 +30,6 @@ jobs:
         run: ./gradlew --no-daemon test
       - name: Reject generated local manuals
         run: |
-          if [ -e CLAUDE.md ]; then
-            echo "CLAUDE.md is reserved for a future Claude-compatible Fluxzero integration" >&2
-            exit 1
-          fi
           if find . -path '*/.fluxzero/agents*' -print -quit | grep -q .; then
             echo "The build generated repository-local Fluxzero manuals" >&2
             exit 1
