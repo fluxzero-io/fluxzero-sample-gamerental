@@ -18,6 +18,7 @@ java {
 }
 
 repositories {
+    maven { url = uri("https://packages.fluxzero.io/maven") }
     mavenCentral()
 }
 
