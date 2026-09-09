@@ -31,6 +31,9 @@ Start the complete local application stack:
 
 This starts the Fluxzero test server, the Fluxzero proxy on `http://localhost:8080`, and the Spring Boot application.
 
+The build resolves Fluxzero artifacts from [Fluxzero Packages](https://packages.fluxzero.io/).
+Maven Central remains available for other dependencies.
+
 ## API endpoints
 
 ### User management
